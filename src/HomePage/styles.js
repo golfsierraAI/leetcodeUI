@@ -1,22 +1,31 @@
 import { makeStyles } from "@material-ui/core";
 
 const homePageStyles = makeStyles({
+  heading: {
+    color: "white",
+    fontFamily: "Montserrat",
+    textAlign: "center",
+    letterSpacing: "4px",
+    fontWeight: 100,
+  },
   root: {
     width: "90vw",
-    height: "86vh",
+    height: "87vh",
     position: "absolute",
-    top: "50%",
+    top: "55%",
     left: "50%",
     transform: "translate(-50%,-50%)",
     overflow: "auto",
     borderRadius: 0,
+    backgroundColor: "transparent",
+    border: "2px solid #EEEEEE",
   },
   tableBody: {
     "&:nth-child(even) tr:nth-child(odd)": {
-      backgroundColor: "#2C394B",
+      backgroundColor: "#00000073",
     },
     "&:nth-child(even) tr:nth-child(even)": {
-      backgroundColor: "#334756",
+      backgroundColor: "#444444b0",
     },
   },
   tableCell: {
@@ -24,6 +33,7 @@ const homePageStyles = makeStyles({
     padding: "9.5px",
     color: "whitesmoke",
     fontFamily: "Montserrat",
+    fontWeight: 300,
   },
   checkBox: {
     color: "white",
@@ -36,7 +46,7 @@ const homePageStyles = makeStyles({
     fontWeight: 500,
     color: "whitesmoke",
     fontFamily: "Montserrat",
-    backgroundColor: "#334756",
+    backgroundColor: "black",
     border: "none",
   },
   link: {

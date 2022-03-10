@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Typography,
 } from "@material-ui/core";
 import react from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,66 +32,88 @@ const HomePage = () => {
     (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, (match) =>
       match.toUpperCase()
     );
-  return false ? (
-    <Paper className={classes.root}>
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell classes={{ root: classes.tableCellHeader }}>
-              <a href="#" className={classes.link}>
-                <GitHubIcon fontSize="large" style={{ padding: "0 0 0 5px" }} />
-              </a>
-            </TableCell>
-            {Object.keys(data[0])
-              .slice(1)
-              .map((key) => {
-                return (
-                  <TableCell classes={{ root: classes.tableCellHeader }}>
-                    {capitalize(key.slice(0, key.indexOf("n") + 1)) +
-                      " " +
-                      capitalize(key.slice(key.indexOf("n") + 1, key.length))}
-                  </TableCell>
-                );
-              })}
-          </TableRow>
-        </TableHead>
-        <TableBody
-          classes={{
-            root: classes.tableBody,
-          }}
-        >
-          {data.map((key) => {
-            return (
-              <TableRow key={key.id}>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <Checkbox
-                    classes={{
-                      checked: classes.checkBoxChecked,
-                      root: classes.checkBox,
-                    }}
+
+  const clickManager = (id) => {
+    localStorage.setItem(id, !JSON.parse(localStorage.getItem(id)));
+  };
+  return data ? (
+    <>
+      <Typography className={classes.heading} variant="h2">
+        LEETCODE PATTERNS
+      </Typography>
+      <Paper className={classes.root}>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell classes={{ root: classes.tableCellHeader }}>
+                <a
+                  href="https://github.com/golfsierraAI"
+                  className={classes.link}
+                  target="_blank"
+                >
+                  <GitHubIcon
+                    fontSize="large"
+                    style={{ padding: "0 0 0 5px" }}
                   />
-                </TableCell>
-                {Object.values(key)
-                  .slice(1)
-                  .map((value) => {
-                    return (
-                      <TableCell classes={{ root: classes.tableCell }}>
-                        {value.includes("https") ? (
-                          <a href={value} className={classes.link}>
-                            <LinkIcon />
-                          </a>
-                        ) : (
-                          capitalize(value)
-                        )}
-                      </TableCell>
-                    );
-                  })}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper>
+                </a>
+              </TableCell>
+              {Object.keys(data[0])
+                .slice(1)
+                .map((key) => {
+                  return (
+                    <TableCell classes={{ root: classes.tableCellHeader }}>
+                      {capitalize(key.slice(0, key.indexOf("n") + 1)) +
+                        " " +
+                        capitalize(key.slice(key.indexOf("n") + 1, key.length))}
+                    </TableCell>
+                  );
+                })}
+            </TableRow>
+          </TableHead>
+          <TableBody
+            classes={{
+              root: classes.tableBody,
+            }}
+          >
+            {data.map((key) => {
+              return (
+                <TableRow key={key.id}>
+                  <TableCell classes={{ root: classes.tableCell }}>
+                    <Checkbox
+                      classes={{
+                        checked: classes.checkBoxChecked,
+                        root: classes.checkBox,
+                      }}
+                      defaultChecked={JSON.parse(localStorage.getItem(key.id))}
+                      onClick={() => clickManager(key.id)}
+                    />
+                  </TableCell>
+                  {Object.values(key)
+                    .slice(1)
+                    .map((value) => {
+                      return (
+                        <TableCell classes={{ root: classes.tableCell }}>
+                          {value.includes("https") ? (
+                            <a
+                              target="_blank"
+                              href={value}
+                              className={classes.link}
+                            >
+                              <LinkIcon />
+                            </a>
+                          ) : (
+                            capitalize(value)
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
+    </>
   ) : (
     <ReactLoading
       className={classes.loader}

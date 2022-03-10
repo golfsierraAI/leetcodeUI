@@ -128,13 +128,10 @@ table {
   width: 0;
 }
 body {
-  background-image: linear-gradient(
-    to bottom right,
-    #041c32,
-    rgb(0, 0, 0),
-    #051367
-  );
   font-family: "Montserrat", sans-serif !important;
+  background-image: url("./background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
