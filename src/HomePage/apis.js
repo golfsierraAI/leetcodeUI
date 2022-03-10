@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const dataLoader = () =>
   axios
-    .get("https://leetcodepatterns.herokuapp.com/get")
+    .get("https://leetcodepatternsbackend.herokuapp.com/get")
     .then((response) => {
       return response;
     })
